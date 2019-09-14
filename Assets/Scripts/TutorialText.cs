@@ -9,11 +9,16 @@ public class TutorialText : MonoBehaviour
     private Text tutorialText;
     [SerializeField]
     private GameManager gm;
+    [SerializeField]
+    private PaletteManager Palette;
+    [SerializeField]
+    private GameObject mainText;
 
     private string[] exampleText =
     {
         "パンツの色を当てましょう",
-        "赤色と叫んでください"
+        "赤色と叫んでください",
+
     };
 
     // Start is called before the first frame update
@@ -30,14 +35,11 @@ public class TutorialText : MonoBehaviour
     private bool neverDone = true;
     void Update()
     {
-        if (gm.GetGameState() == GameManager.GameState.Main)
-        {
-            gameObject.SetActive(false);
-        }
+
         if (count >= exampleText.Length-1 && neverDone)
         { 
             gm.IsEnableInput = true;
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             neverDone = false;
             return;
         }
@@ -47,6 +49,13 @@ public class TutorialText : MonoBehaviour
             count++;
             tutorialText.text = exampleText[count];
            
+        }
+        else if(Input.GetMouseButtonDown(0) && gm.GetGameState() == GameManager.GameState.Main)
+        {
+            Palette.ResetColor();
+            gameObject.SetActive(false);
+            Palette.transform.gameObject.SetActive(false);
+            mainText.SetActive(true);
         }
     }
 }
