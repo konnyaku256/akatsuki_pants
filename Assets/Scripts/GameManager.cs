@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 
     public enum PantsColor
     {
-        None,
         White,
         Black,
         Pink,
@@ -36,7 +35,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PantsColor answerColor;
 
-    private PantsColor currentColor = PantsColor.None;
+    //private PantsColor currentColor = PantsColor.None;
 
     [SerializeField]
     private PaletteManager Palette;
@@ -46,6 +45,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject resultText;
+
+    private Dictionaly<string, PantsColor> pants = new Dictionaly<string, PantsColor>();
+    private bool isPressedVoiceButton;
 
     private static bool Cleared = false;
     public bool IsClear
@@ -72,6 +74,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        InitializePants();
+
         if (SceneManager.GetActiveScene().name == "Title")
         {
             SetGameState(GameState.Title);
@@ -105,11 +110,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log("aaaaaaaaaaaaa");
                 neverDone = false;
             }
-            if(Input.GetKey(KeyCode.Space))
-            {
-                //デバック用
-                DownKeyCheck();
-            }
+            isPressedVoiceButton = Input.GetKey(KeyCode.Space);
+
+            //デバック用
+            // DownKeyCheck();
+
         }
         Debug.Log(answerCount);
     }
@@ -163,4 +168,62 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void InputVoiceString(String voice)
+    {
+
+        PantsColor voicePantsColor = pants[voice];
+
+        if(!isPressedVoiceButton)
+            return;
+
+        if (answerColor == voicePantsColor)
+        {
+            if (GetGameState() == GameState.Tutorial)
+            {
+                Palette.RemoveColor(PantsColor.Red);
+                mainText.SetActive(true);
+                SetGameState(GameState.Main);
+                IsEnableInput = false;
+                neverDone = true;
+                answerCount = 0;
+
+            }
+            else if (GetGameState() == GameState.Main)
+            {
+                IsEnableInput = false;
+                answerCount++;
+                SetGameState(GameState.Result);
+                SceneManager.LoadScene("Result");
+            }
+        }
+        else
+        {
+            //間違っていた時の処理
+            Debug.Log("間違い");
+            answerCount++;
+        }
+
+    }
+
+    void InitializePants() {
+
+        pants.Add("白", PantsColor.White);
+        pants.Add("黒", PantsColor.Black);
+        pants.Add("ピンク", PantsColor.Pink);
+        pants.Add("赤", PantsColor.Red);
+        pants.Add("青", PantsColor.Blue);
+        pants.Add("緑", PantsColor.Green);
+        pants.Add("紫", PantsColor.Purple);
+        pants.Add("黃", PantsColor.Yellow);
+        pants.Add("黃色", PantsColor.Yellow);
+    }
+
+    void SetAnswerPantsColor() {
+
+        var pantsValue = UnityEngine.Random.Range(0, Enum.GetNames(typeof(PantsColor)).Length);
+        answerColor = (PantsColor)Enum.ToObject(typeof(PantsColor), pantsValue);
+
+    }
+
 }
