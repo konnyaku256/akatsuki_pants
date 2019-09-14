@@ -37,6 +37,7 @@ public class TutorialText : MonoBehaviour
         if (count >= exampleText.Length-1 && neverDone)
         { 
             gm.IsEnableInput = true;
+            gameObject.SetActive(false);
             neverDone = false;
             return;
         }
