@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             // DownKeyCheck();
 
         }
-        Debug.Log(answerCount);
+        //Debug.Log(answerCount);
     }
 
     public GameState GetGameState()
