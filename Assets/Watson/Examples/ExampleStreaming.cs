@@ -57,6 +57,7 @@ namespace IBM.Watsson.Examples
 
         private SpeechToTextService _service;
 
+        public float VoiceLevel = 0f;
         void Start()
         {
             LogSystem.InstallDefaultReactors();
@@ -100,6 +101,8 @@ namespace IBM.Watsson.Examples
                 if (value && !_service.IsListening)
                 {
                     _service.RecognizeModel = (string.IsNullOrEmpty(_recognizeModel) ? "ja-JP_BroadbandModel" : _recognizeModel);
+                    _service.Keywords = new string[] {"白", "黒", "ピンク", "赤", "青", "緑", "紫", "黄色"};
+                    _service.KeywordsThreshold = 0.1f;
                     _service.DetectSilence = true;
                     _service.EnableWordConfidence = true;
                     _service.EnableTimestamps = true;
@@ -185,7 +188,8 @@ namespace IBM.Watsson.Examples
                     record.Clip = AudioClip.Create("Recording", midPoint, _recording.channels, _recordingHZ, false);
                     record.Clip.SetData(samples, 0);
 
-                    Log.Debug("", record.MaxLevel.ToString());
+                    VoiceLevel = record.MaxLevel;
+                    //Log.Debug("", record.MaxLevel.ToString());
                     _service.OnListen(record);
 
                     bFirstBlock = !bFirstBlock;
@@ -216,13 +220,14 @@ namespace IBM.Watsson.Examples
                         //string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
                         // Log.Debug("ExampleStreaming.OnRecognize()", text);
                         //ResultsField.text = text;
-                        Log.Debug("", alt.transcript);
+                        //Log.Debug("", alt.transcript);
                     }
 
                     if (res.keywords_result != null && res.keywords_result.keyword != null)
                     {
                         foreach (var keyword in res.keywords_result.keyword)
                         {
+                            Log.Debug("VoiceLevel", VoiceLevel.ToString());
                             Log.Debug("ExampleStreaming.OnRecognize()", "keyword: {0}, confidence: {1}, start time: {2}, end time: {3}", keyword.normalized_text, keyword.confidence, keyword.start_time, keyword.end_time);
                         }
                     }
@@ -231,7 +236,7 @@ namespace IBM.Watsson.Examples
                     {
                         foreach (var wordAlternative in res.word_alternatives)
                         {
-                            Log.Debug("ExampleStreaming.OnRecognize()", "Word alternatives found. Start time: {0} | EndTime: {1}", wordAlternative.start_time, wordAlternative.end_time);
+                            //Log.Debug("ExampleStreaming.OnRecognize()", "Word alternatives found. Start time: {0} | EndTime: {1}", wordAlternative.start_time, wordAlternative.end_time);
                             foreach (var alternative in wordAlternative.alternatives)
                                 Log.Debug("ExampleStreaming.OnRecognize()", "\t word: {0} | confidence: {1}", alternative.word, alternative.confidence);
                         }
