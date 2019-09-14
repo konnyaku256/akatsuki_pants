@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
 
     public enum PantsColor
     {
+        None,
         White,
         Black,
         Pink,
         Red,
         Blue,
-        Grren,
+        Green,
         Purple,
         Yellow
     };
@@ -31,6 +32,14 @@ public class GameManager : MonoBehaviour
     //デバック用キー
     [SerializeField]
     private KeyCode answerKey = KeyCode.A;
+
+    [SerializeField]
+    private PantsColor answerColor;
+
+    private PantsColor currentColor = PantsColor.None;
+
+    [SerializeField]
+    private PaletteManager Palette;
 
     [SerializeField]
     private GameObject mainText;
@@ -69,6 +78,7 @@ public class GameManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Main")
         {
+            Palette.transform.gameObject.SetActive(false);
             SetGameState(GameState.Tutorial);
         }
         else if (SceneManager.GetActiveScene().name == "Result")
@@ -83,11 +93,18 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    private bool neverDone = true;
     void Update()
     {
         
         if(IsEnableInput)
         {
+            if(neverDone)
+            {
+                Palette.transform.gameObject.SetActive(true);
+                Debug.Log("aaaaaaaaaaaaa");
+                neverDone = false;
+            }
             if(Input.GetKey(KeyCode.Space))
             {
                 //デバック用
@@ -119,10 +136,11 @@ public class GameManager : MonoBehaviour
                     //チュートリアルの場合は例外
                     if (GetGameState() == GameState.Tutorial)
                     {
-                        
+                        Palette.RemoveColor(PantsColor.Red);
                         mainText.SetActive(true);
                         SetGameState(GameState.Main);
                         IsEnableInput = false;
+                        neverDone = true;
                         answerCount=0;
 
                     }
