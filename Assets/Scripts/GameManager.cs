@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject mainText;
+    [SerializeField]
+    private GameObject tutorialText;
+    [SerializeField]
+    private AudioSource wrongSE;
+    [SerializeField]
+    private AudioSource correctSE;
 
     [SerializeField]
     private GameObject resultText;
@@ -78,6 +84,8 @@ public class GameManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Main")
         {
+            //correctSE = GetComponent<AudioSource>();
+            //wrongSE = GetComponent<AudioSource>();
             Palette.transform.gameObject.SetActive(false);
             SetGameState(GameState.Tutorial);
         }
@@ -102,7 +110,7 @@ public class GameManager : MonoBehaviour
             if(neverDone)
             {
                 Palette.transform.gameObject.SetActive(true);
-                Debug.Log("aaaaaaaaaaaaa");
+               // Debug.Log("aaaaaaaaaaaaa");
                 neverDone = false;
             }
             if(Input.GetKey(KeyCode.Space))
@@ -111,7 +119,7 @@ public class GameManager : MonoBehaviour
                 DownKeyCheck();
             }
         }
-        //Debug.Log(answerCount);
+        Debug.Log(answerCount);
     }
 
     public GameState GetGameState()
@@ -137,7 +145,8 @@ public class GameManager : MonoBehaviour
                     if (GetGameState() == GameState.Tutorial)
                     {
                         Palette.RemoveColor(PantsColor.Red);
-                        mainText.SetActive(true);
+                        tutorialText.GetComponent<Text>().text = "正解!";
+                        correctSE.Play();
                         SetGameState(GameState.Main);
                         IsEnableInput = false;
                         neverDone = true;
@@ -146,17 +155,20 @@ public class GameManager : MonoBehaviour
                     }
                     else if(GetGameState() == GameState.Main)
                     {
+                        Palette.RemoveColor(PantsColor.Red);
                         IsEnableInput = false;
+                        correctSE.Play();
                         answerCount++;
                         SetGameState(GameState.Result);
-                        SceneManager.LoadScene("Result");
+                        mainText.GetComponent<Text>().text = "正解！";
                     }
                     break;
                 }
-                else if (Input.GetKeyDown(code))
+                else if (code != KeyCode.Space && Input.GetKeyDown(code))
                 {
                     //間違っていた時の処理
                     Debug.Log("間違い");
+                    wrongSE.Play();
                     answerCount++;
                     break;
                 }
