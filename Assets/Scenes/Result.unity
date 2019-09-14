@@ -723,6 +723,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: resultText
+      value: 
+      objectReference: {fileID: 336479735}
     - target: {fileID: 8415506916518939221, guid: a5030d5e890388c43ba9a24ff0f2be4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,11 +783,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: resultText
-      value: 
-      objectReference: {fileID: 336479735}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5030d5e890388c43ba9a24ff0f2be4b, type: 3}
 --- !u!1 &1249501472 stripped
@@ -801,7 +801,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0f2a0f7c79d2d024e854e3420cb0ab61, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

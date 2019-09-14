@@ -908,6 +908,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: answerKeys
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: mainText
+      value: 
+      objectReference: {fileID: 588508058}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: Palette
+      value: 
+      objectReference: {fileID: 291388008}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: tutorialText
+      value: 
+      objectReference: {fileID: 605185719}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: wrongSE
+      value: 
+      objectReference: {fileID: 1340135705}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: correctSE
+      value: 
+      objectReference: {fileID: 1340135706}
     - target: {fileID: 8415506916518939221, guid: a5030d5e890388c43ba9a24ff0f2be4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -963,36 +993,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: answerKeys
-      value: 97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: mainText
-      value: 
-      objectReference: {fileID: 588508058}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: Palette
-      value: 
-      objectReference: {fileID: 291388008}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: tutorialText
-      value: 
-      objectReference: {fileID: 605185719}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: wrongSE
-      value: 
-      objectReference: {fileID: 1340135705}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: correctSE
-      value: 
-      objectReference: {fileID: 1340135706}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5030d5e890388c43ba9a24ff0f2be4b, type: 3}
 --- !u!1 &810888429
@@ -1317,7 +1317,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: cb969a4b467a53844a06e2e36f166fbb, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1413,7 +1413,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6341a6f979a8a564f8b020865801948a, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
