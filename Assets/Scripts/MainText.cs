@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainText : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class MainText : MonoBehaviour
             count++;
             mainText.text = exampleText[count];
 
+        }
+        else if(Input.GetMouseButtonDown(0) && gm.GetGameState() == GameManager.GameState.Result)
+        {
+            SceneManager.LoadScene("Result");
         }
     }
 }
