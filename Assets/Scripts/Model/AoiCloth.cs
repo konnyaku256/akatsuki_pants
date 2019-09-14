@@ -70,7 +70,7 @@ public class AoiCloth : MonoBehaviour
 		m_pants.Add(GameManager.PantsColor.Pink, m_pink);
 		m_pants.Add(GameManager.PantsColor.Red, m_red);
 		m_pants.Add(GameManager.PantsColor.Blue, m_blue);
-		m_pants.Add(GameManager.PantsColor.Grren, m_green);
+		m_pants.Add(GameManager.PantsColor.Green, m_green);
 		m_pants.Add(GameManager.PantsColor.Purple, m_purple);
 		m_pants.Add(GameManager.PantsColor.Yellow, m_yellow);
 
