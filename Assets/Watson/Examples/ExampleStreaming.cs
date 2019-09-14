@@ -169,7 +169,6 @@ namespace IBM.Watsson.Examples
                 if (writePos > _recording.samples || !Microphone.IsRecording(_microphoneID))
                 {
                     Log.Error("ExampleStreaming.RecordingHandler()", "Microphone disconnected.");
-
                     StopRecording();
                     yield break;
                 }
@@ -186,6 +185,7 @@ namespace IBM.Watsson.Examples
                     record.Clip = AudioClip.Create("Recording", midPoint, _recording.channels, _recordingHZ, false);
                     record.Clip.SetData(samples, 0);
 
+                    Log.Debug("", record.MaxLevel.ToString());
                     _service.OnListen(record);
 
                     bFirstBlock = !bFirstBlock;
@@ -213,9 +213,10 @@ namespace IBM.Watsson.Examples
                 {
                     foreach (var alt in res.alternatives)
                     {
-                        string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
-                        Log.Debug("ExampleStreaming.OnRecognize()", text);
-                        ResultsField.text = text;
+                        //string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
+                        // Log.Debug("ExampleStreaming.OnRecognize()", text);
+                        //ResultsField.text = text;
+                        Log.Debug("", alt.transcript);
                     }
 
                     if (res.keywords_result != null && res.keywords_result.keyword != null)
