@@ -34,25 +34,8 @@ public class AoiCloth : MonoBehaviour
 		m_propID = Shader.PropertyToID("_MainTex");
 	}
 
-	// Update is called once per frame
-	void Update()
-    {
-
-		if (Input.GetKeyDown(KeyCode.W))
-			SetPants(GameManager.PantsColor.White);
-		else if (Input.GetKeyDown(KeyCode.B))
-			SetPants(GameManager.PantsColor.Black);
-		else if (Input.GetKeyDown(KeyCode.P))
-			SetPants(GameManager.PantsColor.Purple);
-		else if (Input.GetKeyDown(KeyCode.Q))
-			SetPants(GameManager.PantsColor.Pink);
-
-
-    }
-
 
 	public void SetPants(GameManager.PantsColor pantsColor) {
-
 		SetPantsTexture(m_pants[pantsColor]);
 
 	}

@@ -52,6 +52,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject resultText;
 
+    [SerializeField]
+    private AoiCloth AoiCloth;
+
     private Dictionary<string, PantsColor> pants = new Dictionary<string, PantsColor>();
     private bool isPressedVoiceButton;
 
@@ -100,12 +103,13 @@ public class GameManager : MonoBehaviour
         {
             SetGameState(GameState.Title);
         }
-        else if (SceneManager.GetActiveScene().name == "Main")
+        else if (SceneManager.GetActiveScene().name == "Main 1")
         {
             //correctSE = GetComponent<AudioSource>();
             //wrongSE = GetComponent<AudioSource>();
             Palette.transform.gameObject.SetActive(false);
             answerColor = PantsColor.Red;
+            AoiCloth.SetPants(answerColor);
             SetGameState(GameState.Tutorial);
         }
         else if (SceneManager.GetActiveScene().name == "Result")
@@ -204,6 +208,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(voice);
         var temp = GetContainColorKanji(voice);
         Debug.Log(temp);
+        Debug.Log(pants.ContainsKey(temp));
         if (!pants.ContainsKey(temp))
             return;
 
@@ -260,6 +265,7 @@ public class GameManager : MonoBehaviour
 
         var pantsValue = UnityEngine.Random.Range(0, Enum.GetNames(typeof(PantsColor)).Length);
         answerColor = (PantsColor)Enum.ToObject(typeof(PantsColor), pantsValue);
+        AoiCloth.SetPants(answerColor);
 
     }
 
