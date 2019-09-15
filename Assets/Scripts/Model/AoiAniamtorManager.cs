@@ -45,7 +45,7 @@ public class AoiAniamtorManager : MonoBehaviour
 		if (m_wrongCount < m_hintCount)
 			return;
 
-		m_animator.SetTrigger("Hint");
+
 
 
 
