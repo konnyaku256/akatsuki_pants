@@ -61,6 +61,9 @@ namespace IBM.Watsson.Examples
         private GameManager gameManager;
 
         public float VoiceLevel = 0f;
+
+        [SerializeField, Range(0f, 10f)] float m_gain = 1f; // 音量に掛ける倍率
+
         void Start()
         {
             LogSystem.InstallDefaultReactors();
@@ -104,8 +107,8 @@ namespace IBM.Watsson.Examples
                 if (value && !_service.IsListening)
                 {
                     _service.RecognizeModel = (string.IsNullOrEmpty(_recognizeModel) ? "ja-JP_BroadbandModel" : _recognizeModel);
-                    _service.Keywords = new string[] {"白", "黒", "ピンク", "赤", "青", "緑", "紫", "黄色"};
-                    _service.KeywordsThreshold = 0.1f;
+                    // _service.Keywords = new string[] {"白", "黒", "ピンク", "赤", "青", "緑", "紫", "黄色"};
+                    // _service.KeywordsThreshold = 0.1f;
                     _service.DetectSilence = true;
                     _service.EnableWordConfidence = true;
                     _service.EnableTimestamps = true;
@@ -191,8 +194,7 @@ namespace IBM.Watsson.Examples
                     record.Clip = AudioClip.Create("Recording", midPoint, _recording.channels, _recordingHZ, false);
                     record.Clip.SetData(samples, 0);
 
-                    VoiceLevel = record.MaxLevel;
-                    //Log.Debug("", record.MaxLevel.ToString());
+                    VoiceLevel = CalculateVoiceLevel(samples);
                     _service.OnListen(record);
 
                     bFirstBlock = !bFirstBlock;
@@ -223,8 +225,9 @@ namespace IBM.Watsson.Examples
                         //string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
                         // Log.Debug("ExampleStreaming.OnRecognize()", text);
                         //ResultsField.text = alt.transcript;
-                        //Log.Debug("", alt.transcript);
 
+                        Log.Debug("VoiceLevel", VoiceLevel.ToString());
+                        Log.Debug("Intents", alt.transcript);
                         gameManager.InputVoiceString(alt.transcript, VoiceLevel);
 
                     }
@@ -260,6 +263,16 @@ namespace IBM.Watsson.Examples
                     Log.Debug("ExampleStreaming.OnRecognizeSpeaker()", string.Format("speaker result: {0} | confidence: {3} | from: {1} | to: {2}", labelResult.speaker, labelResult.from, labelResult.to, labelResult.confidence));
                 }
             }
+        }
+
+        private float CalculateVoiceLevel(float[] data) {
+            float sum = 0f;
+            for (int i = 0; i < data.Length; ++i)
+            {
+                sum += Mathf.Abs(data[i]); // データ（波形）の絶対値を足す
+            }
+            // データ数で割ったものに倍率をかけて音量とする
+            return Mathf.Clamp01(sum * m_gain / (float)data.Length) * 100;
         }
     }
 }
