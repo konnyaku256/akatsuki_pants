@@ -57,6 +57,9 @@ namespace IBM.Watsson.Examples
 
         private SpeechToTextService _service;
 
+        [SerializeField]
+        private GameManager gameManager;
+
         public float VoiceLevel = 0f;
         void Start()
         {
@@ -221,6 +224,8 @@ namespace IBM.Watsson.Examples
                         // Log.Debug("ExampleStreaming.OnRecognize()", text);
                         //ResultsField.text = text;
                         //Log.Debug("", alt.transcript);
+                        gameManager.InputVoiceString(alt.transcript);
+
                     }
 
                     if (res.keywords_result != null && res.keywords_result.keyword != null)
