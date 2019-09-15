@@ -6,8 +6,6 @@ using UnityEngine;
 public class AoiAniamtorManager : MonoBehaviour
 {
 
-	[SerializeField]
-	private int m_hintCount;
 
 	[SerializeField]
 	private float m_jump1Volume;
@@ -40,13 +38,7 @@ public class AoiAniamtorManager : MonoBehaviour
 
 	public void WrongAnswer() {
 
-		m_wrongCount++;
 		PlayRefuseAnimation();
-		if (m_wrongCount < m_hintCount)
-			return;
-
-
-
 
 
 	}
