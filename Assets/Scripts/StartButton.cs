@@ -12,6 +12,6 @@ public class StartButton : MonoBehaviour
     {
         Debug.Log("PressStart!");
         gm.SetGameState(GameManager.GameState.Tutorial);
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Main1");
     }
 }

@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource correctSE;
 
+    public static float voiceScore = 0.0f;
     [SerializeField]
     private GameObject resultText;
 
@@ -69,7 +70,7 @@ public class GameManager : MonoBehaviour
         "青",
         "緑",
         "紫",
-        "黄",
+        "黄"
     };
 
     public bool IsClear
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
         {
             SetGameState(GameState.Title);
         }
-        else if (SceneManager.GetActiveScene().name == "Main 1")
+        else if (SceneManager.GetActiveScene().name == "Main1")
         {
             //correctSE = GetComponent<AudioSource>();
             //wrongSE = GetComponent<AudioSource>();
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Result")
         {
             SetGameState(GameState.Result);
-            resultText.GetComponent<Text>().text = "叫んだ回数　　" + answerCount + "回";
+            resultText.GetComponent<Text>().text = "叫んだ回数　　" + answerCount + "回\n" + "声量  　"+ voiceScore ;
         }
         else if (SceneManager.GetActiveScene().name == "Reward")
         {
@@ -199,12 +200,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InputVoiceString(String voice)
+    public void InputVoiceString(String voice, float voiceLevel)
     {
 
-        if (!isPressedVoiceButton)
+        if (!IsEnableInput)
             return;
-
+        
         Debug.Log(voice);
         var temp = GetContainColorKanji(voice);
         Debug.Log(temp);
@@ -224,6 +225,7 @@ public class GameManager : MonoBehaviour
                 tutorialText.GetComponent<Text>().text = "正解!";
                 correctSE.Play();
                 SetGameState(GameState.Main);
+                //voiceScore = voiceLevel;
                 IsEnableInput = false;
                 neverDone = true;
                 SetAnswerPantsColor();
@@ -235,6 +237,7 @@ public class GameManager : MonoBehaviour
                 Palette.RemoveColor(voicePantsColor);
                 correctSE.Play();
                 answerCount++;
+                voiceScore = voiceLevel;
                 SetGameState(GameState.Result);
                 mainText.GetComponent<Text>().text = "正解！";
             }
@@ -242,6 +245,7 @@ public class GameManager : MonoBehaviour
         else
         {
             //間違っていた時の処理
+            Palette.RemoveColor(voicePantsColor);
             Debug.Log("間違い");
             wrongSE.Play();
             answerCount++;
@@ -258,7 +262,8 @@ public class GameManager : MonoBehaviour
         pants.Add("青", PantsColor.Blue);
         pants.Add("緑", PantsColor.Green);
         pants.Add("紫", PantsColor.Purple);
-        pants.Add("黃", PantsColor.Yellow);
+        pants.Add("黄", PantsColor.Yellow);
+        pants.Add("金", PantsColor.Yellow);
     }
 
     void SetAnswerPantsColor() {
