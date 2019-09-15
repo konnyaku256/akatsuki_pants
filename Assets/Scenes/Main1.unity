@@ -933,6 +933,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: answerKeys
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: mainText
+      value: 
+      objectReference: {fileID: 588508058}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: Palette
+      value: 
+      objectReference: {fileID: 291388008}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: tutorialText
+      value: 
+      objectReference: {fileID: 605185719}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: wrongSE
+      value: 
+      objectReference: {fileID: 2092900070}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: correctSE
+      value: 
+      objectReference: {fileID: 2092900071}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: answerColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: AoiCloth
+      value: 
+      objectReference: {fileID: 1489341433}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: antenImg
+      value: 
+      objectReference: {fileID: 1050051208}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: AoiAniamtor
+      value: 
+      objectReference: {fileID: 1489341435}
     - target: {fileID: 8415506916518939221, guid: a5030d5e890388c43ba9a24ff0f2be4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -988,56 +1038,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: answerKeys
-      value: 97
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: mainText
-      value: 
-      objectReference: {fileID: 588508058}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: Palette
-      value: 
-      objectReference: {fileID: 291388008}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: tutorialText
-      value: 
-      objectReference: {fileID: 605185719}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: wrongSE
-      value: 
-      objectReference: {fileID: 2092900070}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: correctSE
-      value: 
-      objectReference: {fileID: 2092900071}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: answerColor
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: AoiCloth
-      value: 
-      objectReference: {fileID: 1489341433}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: antenImg
-      value: 
-      objectReference: {fileID: 1050051208}
-    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
-        type: 3}
-      propertyPath: AoiAniamtor
-      value: 
-      objectReference: {fileID: 1489341435}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5030d5e890388c43ba9a24ff0f2be4b, type: 3}
 --- !u!1 &810888429
@@ -1531,9 +1531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6655bd2f93b4c824ebe8c5abb0896bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_jump1Volume: 3
-  m_jump2Volume: 6
-  m_jump3Volume: 10
+  m_jump1Volume: 5
+  m_jump2Volume: 10
+  m_jump3Volume: 20
 --- !u!1 &1509150250
 GameObject:
   m_ObjectHideFlags: 0

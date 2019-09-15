@@ -14,6 +14,7 @@ public class MainText : MonoBehaviour
     private string[] exampleText =
     {
         "それでは本番です！",
+        "全力で叫んでください！",
         "３",
         "２",
         "1",
@@ -28,20 +29,30 @@ public class MainText : MonoBehaviour
     }
     private int count = 0;
     private bool neverDone = true;
+    private float time = 0.0f;
     // Update is called once per frame
     void Update()
     {
-        if (count >= exampleText.Length - 1 && neverDone)
+        time += Time.deltaTime;
+        if (count >= exampleText.Length - 2 && neverDone)
         {
             gm.IsEnableInput = true;
             neverDone = false;
+            mainText.fontStyle = FontStyle.Bold;
             return;
         }
-        if (count < exampleText.Length - 1 && Input.GetMouseButtonDown(0))
+        if (count < exampleText.Length - 1 && time >= 2.0f && ((count >= 0 && count <2) || (count>5)))
         {
             count++;
+            time = 0.0f;
             mainText.text = exampleText[count];
 
+        }
+        else if(count < exampleText.Length-1 && time >= 1.0f && (count >=2 && count < 6))
+        {
+            count++;
+            time = 0.0f;
+            mainText.text = exampleText[count];
         }
     }
 }
