@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject resultText;
 
-    private Dictionaly<string, PantsColor> pants = new Dictionaly<string, PantsColor>();
+    private Dictionary<string, PantsColor> pants = new Dictionary<string, PantsColor>();
     private bool isPressedVoiceButton;
 
     private static bool Cleared = false;
