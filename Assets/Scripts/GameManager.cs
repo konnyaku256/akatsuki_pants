@@ -52,10 +52,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject resultText;
 
-    private Dictionaly<string, PantsColor> pants = new Dictionaly<string, PantsColor>();
+    private IBM.Watsson.Examples.ExampleStreaming ExampleStreaming;
+
+    private Dictionary<string, PantsColor> pants = new Dictionary<string, PantsColor>();
     private bool isPressedVoiceButton;
 
     private static bool Cleared = false;
+
+    string[] colorKanji =
+    {
+        "白",
+        "黒",
+        "ピンク",
+        "赤",
+        "青",
+        "緑",
+        "紫",
+        "黄",
+    };
+
     public bool IsClear
     {
         get { return Cleared; }
@@ -92,6 +107,7 @@ public class GameManager : MonoBehaviour
             //correctSE = GetComponent<AudioSource>();
             //wrongSE = GetComponent<AudioSource>();
             Palette.transform.gameObject.SetActive(false);
+            answerColor = PantsColor.Red;
             SetGameState(GameState.Tutorial);
         }
         else if (SceneManager.GetActiveScene().name == "Result")
@@ -124,7 +140,7 @@ public class GameManager : MonoBehaviour
             // DownKeyCheck();
 
         }
-        Debug.Log(answerCount);
+     //   Debug.Log(answerCount);
     }
 
     public GameState GetGameState()
@@ -184,35 +200,47 @@ public class GameManager : MonoBehaviour
     public void InputVoiceString(String voice)
     {
 
-        PantsColor voicePantsColor = pants[voice];
-
-        if(!isPressedVoiceButton)
+        if (!isPressedVoiceButton)
             return;
+
+        Debug.Log(voice);
+        var temp = GetContainColorKanji(voice);
+        Debug.Log(temp);
+        if (!pants.ContainsKey(temp))
+            return;
+
+        PantsColor voicePantsColor = pants[temp];
+
+        Debug.Log(answerColor);
 
         if (answerColor == voicePantsColor)
         {
             if (GetGameState() == GameState.Tutorial)
-            {
-                Palette.RemoveColor(PantsColor.Red);
-                mainText.SetActive(true);
+            { 
+                Palette.RemoveColor(voicePantsColor);
+                tutorialText.GetComponent<Text>().text = "正解!";
+                correctSE.Play();
                 SetGameState(GameState.Main);
                 IsEnableInput = false;
                 neverDone = true;
+                SetAnswerPantsColor();
                 answerCount = 0;
 
             }
             else if (GetGameState() == GameState.Main)
             {
-                IsEnableInput = false;
+                Palette.RemoveColor(voicePantsColor);
+                correctSE.Play();
                 answerCount++;
                 SetGameState(GameState.Result);
-                SceneManager.LoadScene("Result");
+                mainText.GetComponent<Text>().text = "正解！";
             }
         }
         else
         {
             //間違っていた時の処理
             Debug.Log("間違い");
+            wrongSE.Play();
             answerCount++;
         }
 
@@ -228,13 +256,25 @@ public class GameManager : MonoBehaviour
         pants.Add("緑", PantsColor.Green);
         pants.Add("紫", PantsColor.Purple);
         pants.Add("黃", PantsColor.Yellow);
-        pants.Add("黃色", PantsColor.Yellow);
     }
 
     void SetAnswerPantsColor() {
 
         var pantsValue = UnityEngine.Random.Range(0, Enum.GetNames(typeof(PantsColor)).Length);
         answerColor = (PantsColor)Enum.ToObject(typeof(PantsColor), pantsValue);
+
+    }
+
+    private string GetContainColorKanji(string voice)
+    {
+        foreach(var s in colorKanji)
+        {
+            if (voice.Contains(s))
+                return s;
+
+        }
+
+        return voice;
 
     }
 
