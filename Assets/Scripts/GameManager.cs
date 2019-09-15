@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     private KeyCode answerKey = KeyCode.A;
 
     [SerializeField]
-    private PantsColor answerColor;
+    private static PantsColor answerColor;
 
     //private PantsColor currentColor = PantsColor.None;
 
@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
         "青",
         "緑",
         "紫",
-        "黄"
+        "黄",
+        "パンツ",
     };
 
     public bool IsClear
@@ -103,8 +104,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         InitializePants();
+
 
         if (SceneManager.GetActiveScene().name == "Title")
         {
@@ -122,7 +123,7 @@ public class GameManager : MonoBehaviour
         else if (SceneManager.GetActiveScene().name == "Result")
         {
             SetGameState(GameState.Result);
-            resultText.GetComponent<Text>().text = "叫んだ回数　　" + answerCount + "回\n" + "声量  　"+ voiceScore ;
+            resultText.GetComponent<Text>().text = "叫んだ回数　　" + answerCount + "回\n" + "勇気  　"+ voiceScore*1000 ;
         }
         else if (SceneManager.GetActiveScene().name == "Reward")
         {
@@ -216,9 +217,17 @@ public class GameManager : MonoBehaviour
         Debug.Log(voice);
         var temp = GetContainColorKanji(voice);
         Debug.Log(temp);
+
         Debug.Log(pants.ContainsKey(temp));
         if (!pants.ContainsKey(temp))
             return;
+
+        if (pants[temp] == PantsColor.Pants)
+        {
+            Debug.Log("パンツ！");
+            AoiAniamtor.AoiJump(voiceLevel);
+            return;
+        }
 
         PantsColor voicePantsColor = pants[temp];
 
@@ -226,6 +235,7 @@ public class GameManager : MonoBehaviour
 
         if (answerColor == voicePantsColor)
         {
+            AoiAniamtor.AoiNodAnimation();
             if (GetGameState() == GameState.Tutorial)
             { 
                 Palette.RemoveColor(voicePantsColor);
@@ -247,6 +257,7 @@ public class GameManager : MonoBehaviour
                 voiceScore = voiceLevel;
                 SetGameState(GameState.Result);
                 mainText.GetComponent<Text>().text = "正解！";
+
                 StartCoroutine(Anten());
             }
         }
@@ -284,7 +295,6 @@ public class GameManager : MonoBehaviour
 
         pants.Add("赤", PantsColor.Red);
         pants.Add("あかん", PantsColor.Red);
-        pants.Add("D_ア", PantsColor.Red);
         pants.Add("バカ", PantsColor.Red);
         pants.Add("頭", PantsColor.Red);
         pants.Add("他", PantsColor.Red);

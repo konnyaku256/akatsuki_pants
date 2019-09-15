@@ -13,8 +13,11 @@ public class MainText : MonoBehaviour
 
     private string[] exampleText =
     {
-        "本番",
-        "３・２・１", //ここはアニメーションなどをする必要性あり
+        "それでは本番です！",
+        "３",
+        "２",
+        "1",
+        "スタート！",
         "パンツの色を叫べ‼"
     };
 

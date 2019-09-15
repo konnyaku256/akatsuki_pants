@@ -59,7 +59,12 @@ public class AoiAniamtorManager : MonoBehaviour
 
 	public void AoiJump(float voiceVolume) {
 
-		if (voiceVolume > m_jump3Volume)
+        AnimatorStateInfo stateinfor = m_animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateinfor.IsName("Jump1") || stateinfor.IsName("Jump2") || stateinfor.IsName("Jump3"))
+            return;
+
+        if (voiceVolume > m_jump3Volume)
 			m_animator.SetTrigger("Jump3");
 		else if (voiceVolume > m_jump2Volume)
 			m_animator.SetTrigger("Jump2");
