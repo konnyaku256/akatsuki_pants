@@ -291,7 +291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &171577130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,8 +364,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1020, y: 67}
+  m_AnchoredPosition: {x: -36, y: -492}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &178971965
 GameObject:
@@ -1033,6 +1033,11 @@ PrefabInstance:
       propertyPath: antenImg
       value: 
       objectReference: {fileID: 1050051208}
+    - target: {fileID: 8415506916518939218, guid: a5030d5e890388c43ba9a24ff0f2be4b,
+        type: 3}
+      propertyPath: AoiAniamtor
+      value: 
+      objectReference: {fileID: 1489341435}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5030d5e890388c43ba9a24ff0f2be4b, type: 3}
 --- !u!1 &810888429
@@ -1511,7 +1516,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AnimatorController:
-  - {fileID: 9100000, guid: 85f37ebd80cf7b1489d17164f2534ab0, type: 2}
+  - {fileID: 9100000, guid: f1743b442c914384a86131b993d963c7, type: 2}
+  - {fileID: 9100000, guid: 24d28d5890922c44f90fa34de16f7a5a, type: 2}
+  - {fileID: 9100000, guid: 4baa1b407b3bd604aace3a0cfa6a748d, type: 2}
+--- !u!114 &1489341435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489341432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6655bd2f93b4c824ebe8c5abb0896bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_jump1Volume: 3
+  m_jump2Volume: 6
+  m_jump3Volume: 10
 --- !u!1 &1509150250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,6 +2264,7 @@ MonoBehaviour:
   _recognizeModel: 
   gameManager: {fileID: 1786031842}
   VoiceLevel: 0
+  m_gain: 1
 --- !u!4 &2118322931
 Transform:
   m_ObjectHideFlags: 0

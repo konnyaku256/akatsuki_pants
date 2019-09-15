@@ -224,7 +224,7 @@ namespace IBM.Watsson.Examples
                     {
                         //string text = string.Format("{0} ({1}, {2:0.00})\n", alt.transcript, res.final ? "Final" : "Interim", alt.confidence);
                         // Log.Debug("ExampleStreaming.OnRecognize()", text);
-                        //ResultsField.text = alt.transcript;
+                        ResultsField.text = alt.transcript;
 
                         Log.Debug("VoiceLevel", VoiceLevel.ToString());
                         Log.Debug("Intents", alt.transcript);
