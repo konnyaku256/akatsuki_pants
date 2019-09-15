@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     public static float voiceScore = 0.0f;
     [SerializeField]
     private GameObject resultText;
+    [SerializeField]
+    private Image antenImg;
 
     [SerializeField]
     private AoiCloth AoiCloth;
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Reward")
         {
+            AoiCloth.SetPants(answerColor);
             SetGameState(GameState.Reward);
         }
     }
@@ -240,6 +243,7 @@ public class GameManager : MonoBehaviour
                 voiceScore = voiceLevel;
                 SetGameState(GameState.Result);
                 mainText.GetComponent<Text>().text = "正解！";
+                StartCoroutine(Anten());
             }
         }
         else
@@ -285,6 +289,25 @@ public class GameManager : MonoBehaviour
 
         return voice;
 
+    }
+
+    private IEnumerator Anten()
+    {
+        float time = 0;
+        float alfa = 0;
+        yield return  new WaitForSeconds(3.0f);
+
+        while(time < 2.0f)
+        {
+            time += Time.deltaTime; 
+            alfa += Time.deltaTime*0.5f;
+            Debug.Log(alfa);
+            antenImg.color = new Color(antenImg.color.r, antenImg.color.g, antenImg.color.b, alfa);
+
+            yield return null;
+        }
+        SceneManager.LoadScene("Result");
+        yield break;
     }
 
 }

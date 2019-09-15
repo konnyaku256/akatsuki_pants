@@ -16,8 +16,9 @@ public class TutorialText : MonoBehaviour
 
     private string[] exampleText =
     {
-        "パンツの色を当てましょう",
-        "赤色と叫んでください",
+        "まずはチュートリアルです！",
+        "パンツの色を当てましょう！",
+        "まずは赤色と叫んでください！",
 
     };
 
