@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         Blue,
         Green,
         Purple,
-        Yellow
+        Yellow,
+        Pants
     };
 
     //デバック用キー
@@ -264,14 +265,50 @@ public class GameManager : MonoBehaviour
     void InitializePants() {
 
         pants.Add("白", PantsColor.White);
+        pants.Add("私", PantsColor.White);
+        pants.Add("知る", PantsColor.White);
+        pants.Add("知らん", PantsColor.White);
+
         pants.Add("黒", PantsColor.Black);
+        pants.Add("から", PantsColor.Black);
+        pants.Add("クローン", PantsColor.Black);
+        pants.Add("グラン", PantsColor.Black);
+        pants.Add("来る", PantsColor.Black);
+
         pants.Add("ピンク", PantsColor.Pink);
+        pants.Add("ピーク", PantsColor.Pink);
+        pants.Add("原型", PantsColor.Pink);
+        pants.Add("元気", PantsColor.Pink);
+        pants.Add("天気", PantsColor.Pink);
+        pants.Add("連携", PantsColor.Pink);
+
         pants.Add("赤", PantsColor.Red);
+        pants.Add("あかん", PantsColor.Red);
+        pants.Add("D_ア", PantsColor.Red);
+        pants.Add("バカ", PantsColor.Red);
+        pants.Add("頭", PantsColor.Red);
+        pants.Add("他", PantsColor.Red);
+        pants.Add("アバター", PantsColor.Red);
+        pants.Add("あと", PantsColor.Red);
+
         pants.Add("青", PantsColor.Blue);
+        pants.Add("D_ア", PantsColor.Blue);
+        pants.Add("あう", PantsColor.Blue);
+
         pants.Add("緑", PantsColor.Green);
+        pants.Add("皆", PantsColor.Green);
+        pants.Add("実", PantsColor.Green);
+        pants.Add("未来", PantsColor.Green);
+        pants.Add("メドレー", PantsColor.Green);
+        
         pants.Add("紫", PantsColor.Purple);
+        pants.Add("皆さん", PantsColor.Green);
+
         pants.Add("黄", PantsColor.Yellow);
         pants.Add("金", PantsColor.Yellow);
+        pants.Add("経路", PantsColor.Yellow);
+        
+        pants.Add("パンツ", PantsColor.Pants);
     }
 
     void SetAnswerPantsColor() {
