@@ -56,6 +56,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AoiCloth AoiCloth;
 
+	[SerializeField]
+	private AoiAniamtorManager AoiAniamtor;
+
     private Dictionary<string, PantsColor> pants = new Dictionary<string, PantsColor>();
     private bool isPressedVoiceButton;
 
@@ -248,6 +251,7 @@ public class GameManager : MonoBehaviour
             Palette.RemoveColor(voicePantsColor);
             Debug.Log("間違い");
             wrongSE.Play();
+			AoiAniamtor.WrongAnswer();
             answerCount++;
         }
 
