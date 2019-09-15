@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         Blue,
         Green,
         Purple,
-        Yellow
+        Yellow,
+        Pants
     };
 
     //デバック用キー
@@ -264,6 +265,7 @@ public class GameManager : MonoBehaviour
         pants.Add("紫", PantsColor.Purple);
         pants.Add("黄", PantsColor.Yellow);
         pants.Add("金", PantsColor.Yellow);
+        pants.Add("パンツ", PantsColor.Pants);
     }
 
     void SetAnswerPantsColor() {
