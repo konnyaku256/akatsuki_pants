@@ -40,9 +40,5 @@ public class MainText : MonoBehaviour
             mainText.text = exampleText[count];
 
         }
-        else if(Input.GetMouseButtonDown(0) && gm.GetGameState() == GameManager.GameState.Result)
-        {
-            SceneManager.LoadScene("Result");
-        }
     }
 }
