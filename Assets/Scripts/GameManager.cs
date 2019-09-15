@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private AoiAniamtorManager AoiAniamtor;
 
+    [SerializeField]
+    private float minCorrectVoiceLevel;
+
     private Dictionary<string, PantsColor> pants = new Dictionary<string, PantsColor>();
     private bool isPressedVoiceButton;
 
@@ -134,6 +137,7 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     private bool neverDone = true;
+    private bool neverDone1 = true;
     void Update()
     {
         
@@ -149,6 +153,19 @@ public class GameManager : MonoBehaviour
 
             //デバック用
             // DownKeyCheck();
+            if(answerCount >= 3  && neverDone1)
+            {
+                if(GetGameState() == GameState.Tutorial)
+                {
+                    tutorialText.GetComponent<Text>().text += "\n「パンツ」と大声で叫ぶと少し見えるかも？";
+                    neverDone1 = false;
+                }
+                if (GetGameState() == GameState.Main)
+                {
+                    mainText.GetComponent<Text>().text += "\n「パンツ」と大声で叫ぶと少し見えるかも？";
+                    neverDone1 = false;
+                }
+            }
 
         }
      //   Debug.Log(answerCount);
@@ -179,10 +196,12 @@ public class GameManager : MonoBehaviour
                         Palette.RemoveColor(PantsColor.Red);
                         tutorialText.GetComponent<Text>().text = "正解!";
                         correctSE.Play();
+                        neverDone1 = true;
+                        answerCount = 0;
                         SetGameState(GameState.Main);
                         IsEnableInput = false;
                         neverDone = true;
-                        answerCount=0;
+                        
 
                     }
                     else if(GetGameState() == GameState.Main)
@@ -238,6 +257,7 @@ public class GameManager : MonoBehaviour
             AoiAniamtor.AoiNodAnimation();
             if (GetGameState() == GameState.Tutorial)
             { 
+
                 Palette.RemoveColor(voicePantsColor);
                 tutorialText.GetComponent<Text>().text = "正解!";
                 correctSE.Play();
@@ -251,9 +271,18 @@ public class GameManager : MonoBehaviour
             }
             else if (GetGameState() == GameState.Main)
             {
+                answerCount++;
+
+                if (voiceLevel < minCorrectVoiceLevel)
+                {
+                    AoiAniamtor.AoiUncallAnimation();
+                    mainText.GetComponent<Text>().text = "聞こえないよ？";
+                    return;
+                }
+
                 Palette.RemoveColor(voicePantsColor);
                 correctSE.Play();
-                answerCount++;
+
                 voiceScore = voiceLevel;
                 SetGameState(GameState.Result);
                 mainText.GetComponent<Text>().text = "正解！";

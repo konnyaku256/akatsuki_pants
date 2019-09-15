@@ -78,13 +78,14 @@ public class AoiAniamtorManager : MonoBehaviour
 
 	}
 
-	public void AoiUncallAnimation() {
+    public void AoiUncallAnimation()
+    {
 
-		AnimatorStateInfo stateinfor = m_animator.GetCurrentAnimatorStateInfo(0);
-		if (stateinfor.IsName("Uncall"))
-			return;
+        AnimatorStateInfo stateinfor = m_animator.GetCurrentAnimatorStateInfo(0);
+        if (stateinfor.IsName("Uncall"))
+            return;
 
-		m_animator.SetTrigger("Uncall");
+        m_animator.SetTrigger("Uncall");
+    }
 
-
-	}
+}
